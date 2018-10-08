@@ -7,6 +7,7 @@ open Customer
 
 module Order =
     type Undefined = exn
+
     type OrderId = private OrderId of string
     module OrderId = 
         let create str =
@@ -19,10 +20,10 @@ module Order =
         let value (OrderId str) = str
 
     type OrderLineId = OrderLineId of int
-    type ShippingAddress = Undefined
-    type BillingAddress = Undefined
-    type Price = Undefined
-    type BillingAmount = Undefined
+    type ShippingAddress = string
+    type BillingAddress = string
+    type Price = decimal
+    type BillingAmount = decimal
 
     type NonEmptyList<'a> = {
         First: 'a
@@ -54,6 +55,7 @@ module Order =
         ShippingAddress: string
     }
 
+
     type PlaceOrderEvents = {
         AcknowledgementSent: Undefined
         OrderPlaced: Undefined
@@ -71,3 +73,25 @@ module Order =
     
     type AddressValidationService = 
         UnvalidateOrder -> PlaceOrderEvents option
+    
+    type UnvalidatedAddress = {
+        Lines : string[]
+    }
+
+    type CheckedAddress = {
+        Lines : string[]
+    }
+
+    type CheckProductCodeExists = 
+        ProductCode -> bool
+
+    type CheckAddressExists = 
+        UnvalidatedAddress -> CheckedAddress
+
+    type ValidatedOrder = {
+        OrderId : OrderId
+        CustomerInfo : CustomerInfo
+        ShippingAddress : CheckedAddress
+    }
+    type ValidateOrder =
+        CheckProductCodeExists -> CheckAddressExists -> UnvalidateOrder -> ValidatedOrder

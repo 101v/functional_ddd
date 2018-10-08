@@ -3,9 +3,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Product.fs"/>
-    <Compile Include="OrderQuantity.fs"/>
-    <Compile Include="Customer.fs"/>
+    <Compile Include="Product.fs" />
+    <Compile Include="OrderQuantity.fs" />
+    <Compile Include="Customer.fs" />
     <Compile Include="OrderTaking.Domain.fs" />
   </ItemGroup>
 </Project>
