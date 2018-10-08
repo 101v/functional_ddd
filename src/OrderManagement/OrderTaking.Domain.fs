@@ -1,17 +1,24 @@
 namespace OrderTaking.Domain
 
+open System
 open Product
 open Quantity
+open Customer
 
 module Order =
-
-
     type Undefined = exn
-    type OrderId = Undefined
-    type OrderLineId = Undefined
-    type CustomerId = Undefined
+    type OrderId = private OrderId of string
+    module OrderId = 
+        let create str =
+            if String.IsNullOrEmpty(str) then
+                failwith "OrderId must not be null or empty"
+            elif str.Length > 50 then
+                failwith "OrderId must not be more than 50 chars"
+            else
+                OrderId str
+        let value (OrderId str) = str
 
-    type CustomerInfo = Undefined
+    type OrderLineId = OrderLineId of int
     type ShippingAddress = Undefined
     type BillingAddress = Undefined
     type Price = Undefined
