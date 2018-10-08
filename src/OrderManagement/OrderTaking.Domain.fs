@@ -1,5 +1,8 @@
 namespace OrderTaking.Domain
 
+open Product
+open Quantity
+
 module Order =
 
 

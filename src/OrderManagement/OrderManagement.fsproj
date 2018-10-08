@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.fs"/>
+    <Compile Include="OrderQuantity.fs"/>
     <Compile Include="OrderTaking.Domain.fs" />
   </ItemGroup>
 </Project>
