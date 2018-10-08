@@ -1,31 +1,7 @@
 namespace OrderTaking.Domain
 
 module Order =
-    type WidgetCode = private WidgetCode of string
-    module WidgetCode =
-        let create (code : string) =
-            match code with
-            | c when c.StartsWith("W") -> Ok(WidgetCode c)
-            | c -> Error("Invalid widget code")
-        let valud (WidgetCode code) = code
-    
-    type GizmoCode = GizmoCode of string
-    type ProductCode =
-        | Widget of WidgetCode
-        | Gizmo of GizmoCode
 
-    type UnitQuantity = private UnitQuantity of int
-    type KilogramQuantity = KilogramQuantity of decimal
-    type OrderQuantity = 
-        | Unit of UnitQuantity
-        | Kilos of KilogramQuantity
-
-    module UnitQuantity = 
-        let create qty =
-            if qty < 1 then Error "UnitQuantity can not be negative"
-            else if qty > 1000 then Error "UnitQuantity can not be more than 1000"
-            else Ok(UnitQuantity qty)
-        let value (UnitQuantity qty) = qty
 
     type Undefined = exn
     type OrderId = Undefined
